@@ -3,12 +3,9 @@ angular.module('video-player')
   // TODO
     bindings: {
       videos: '<',
-      video: '='
+      onClick: '<',
     },
     controller: function() {
-      this.onClick = function(vid) {
-        this.video = vid;
-      }.bind(this);
     },
     templateUrl: 'src/templates/videoList.html' 
   });

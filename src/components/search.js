@@ -4,8 +4,12 @@ angular.module('video-player')
   // TODO
     bindings: {
       searchString: '=',
-      searchYouTube: '<'
+      result: '<',
+      handleKeypress: '<',
+      debounceSearch: '<',
     },
-  
+    controller: function(youTube) {
+      this.service = youTube;
+    },
     templateUrl: 'src/templates/search.html'
   });

@@ -1,15 +1,15 @@
-<div id="app container">
+<div id="app container" ng-init="$ctrl.searchResults()">
   <nav class="navbar">
     <div class="col-md-6 col-md-offset-3">
-      <search search-string="$ctrl.searchString" search-you-tube="$ctrl.searchYouTube"><h5><em>search</em> component goes here</h5></search>
+      <search search-string="$ctrl.searchString" result="$ctrl.searchResults" handle-keypress="$ctrl.handleKeypress" debounce-search="$ctrl.debounceSearch"><h5><em>search</em> component goes here</h5></search>
     </div>
   </nav>
   <div class="row">
     <div class="col-md-7">
-      <video-player ng-show="$ctrl.video" video="$ctrl.video"><h5><em>videoPlayer</em> component goes here</h5></video-player>
+      <video-player video="$ctrl.currentVideo"><h5><em>videoPlayer</em> component goes here</h5></video-player>
     </div>
     <div class="col-md-5">
-      <video-list videos="$ctrl.videos" video="$ctrl.video" ><h5><em>videoList</em> component goes here</h5></video-list>
+      <video-list videos="$ctrl.videos" on-click="$ctrl.selectVideo" ><h5><em>videoList</em> component goes here</h5></video-list>
     </div>
   <div>
 </div>

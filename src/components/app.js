@@ -6,31 +6,31 @@ angular.module('video-player')
   //   video: '>' 
   // }
     controller: function(youTube) {
-    // this.selectedVideo = window.exampleVideoData[0];
-      this.searchYouTube = function() {
+      this.searchString = 'dogs';
+      this.currentVideo = null;
+      this.videos = [];
+      this.selectVideo = function(vid) {
+        this.currentVideo = vid;
+      }.bind(this);
+      this.searchResults = function() {
         let params = {
           max: 5,
           query: this.searchString,
-          key: YOUTUBE_API_KEY
+          key: YOUTUBE_API_KEY,
         };
         let callback = function(data) {
           this.videos = data;
-          this.video = data[0];
+          this.currentVideo = data[0];
         };
       
         youTube.search(params, callback.bind(this));
       }.bind(this);
-    
-      this.searchString = '';
-      this.video = null;
-      this.videos = window.exampleVideoData;
-      this.selectVideo = function() {
-      
-      };
-      this.searchResults = function() {
-      
-      };
-      this.currentVideo = exampleVideoData[0];
+      this.debounceSearch = _.debounce(this.searchResults, 10000).bind(this);
+      this.handleKeypress = function(keyEvent) {
+        if (keyEvent.which === 13) {
+          this.searchResults();
+        }
+      }.bind(this);
     },
   
     templateUrl: 'src/templates/app.html'
